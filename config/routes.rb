@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   post("/insert_todo", { :controller => "todos", :action => "create" })
           
   # READ
+  get("/", { :controller => "todos", :action => "index" })
+
   get("/todos", { :controller => "todos", :action => "index" })
   
-  get("/todos/:path_id", { :controller => "todos", :action => "show" })
+  # get("/todos/:path_id", { :controller => "todos", :action => "show" })
   
   # UPDATE
   

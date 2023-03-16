@@ -20,8 +20,8 @@ class TodosController < ApplicationController
   def create
     the_todo = Todo.new
     the_todo.content = params.fetch("query_content")
-    the_todo.status = params.fetch("query_status")
-    the_todo.user_id = params.fetch("query_user_id")
+    # the_todo.status = params.fetch("query_status")
+    # the_todo.user_id = params.fetch("query_user_id")
 
     if the_todo.valid?
       the_todo.save
