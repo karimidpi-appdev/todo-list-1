@@ -16,24 +16,20 @@
 
     <form action="/insert_todo" method="post">
       <div>
-        <label for="content_box">
-          Describe the task:
-        </label>
-
+        <label for="content_box">Describe the task:</label>
         <input type="text" id="content_box" name="query_content">
       </div>
 
       <div>
         <label for="status_box"></label>
-        <input type="hidden" id="status_box" name="query_status">
+        <input type="text" id="status_box" name="query_status" value="next_up">
       </div>
 
       <div>
         <label for="user_id_box"></label>
-        <input type="hidden" id="user_id_box" name="query_user_id">
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= session.fetch(:user_id) %>">
       </div>
       
-
       <button>
         Add to Next Up
       </button>
@@ -60,8 +56,9 @@
               Delete
             </a>
           </small>
-          <form>
+          <form action="/modify_todo/<%= a_todo.id %>" method="post">
             <input type="hidden" name="query_status" value="in_progress">
+            <input type="hidden" name="query_id" value="<%= a_todo.id %>">
             <button>Move to In Progress</button>
           </form>
         </li>
@@ -69,6 +66,33 @@
       <% end %>
     </ul>
   </div>
+
+  
+  <div class="in_progress" style="color: darkgreen">
+    <h2>In Progress</h2>
+    <ul>
+      <% @list_in_progress.each do |a_todo| %>
+      
+        <li>
+          <div>
+            <%= a_todo.content %>
+          </div>
+          <small>
+            Started <%= time_ago_in_words(a_todo.created_at) %> ago
+            <a href="/delete_todo/<%= a_todo.id %>">
+              Delete
+            </a>
+          </small>
+          <form action="/modify_todo/<%= a_todo.id %>" method="post">
+            <input type="hidden" name="query_status" value="done">
+            <button>Move to Done</button>
+          </form>
+        </li>
+        
+      <% end %>
+    </ul>
+  </div>
+
 </div>
 
 <hr>
