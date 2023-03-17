@@ -44,7 +44,7 @@
     <h2>Next Up</h2>
     <ul>
 
-      <% @list_of_todos.each do |a_todo| %>
+      <% @list_next_up.each do |a_todo| %>
       
         <li>
           <div>
@@ -57,8 +57,8 @@
             </a>
           </small>
           <form action="/modify_todo/<%= a_todo.id %>" method="post">
-            <input type="hidden" name="query_status" value="in_progress">
-            <input type="hidden" name="query_id" value="<%= a_todo.id %>">
+            <input type="text" name="query_status" value="in_progress">
+            <input type="text" name="query_id" value="<%= a_todo.id %>">
             <button>Move to In Progress</button>
           </form>
         </li>
@@ -78,7 +78,7 @@
             <%= a_todo.content %>
           </div>
           <small>
-            Started <%= time_ago_in_words(a_todo.created_at) %> ago
+            Started <%= time_ago_in_words(a_todo.updated_at) %> ago
             <a href="/delete_todo/<%= a_todo.id %>">
               Delete
             </a>

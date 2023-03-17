@@ -40,7 +40,6 @@ class TodosController < ApplicationController
     the_id = params.fetch("path_id")
     the_todo = Todo.where({ :id => the_id }).at(0)
 
-    # the_todo.content = params.fetch("query_content")
     the_todo.status = params.fetch("query_status")
     the_todo.user_id = session.fetch(:user_id)
 
