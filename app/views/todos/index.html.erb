@@ -93,6 +93,25 @@
     </ul>
   </div>
 
-</div>
+  <div class="done" style="color: grey">
+    <h2>Done</h2>
+    <ul>
+      <% @done.each do |a_todo| %>
+      
+        <li>
+          <div>
+            <%= a_todo.content %>
+          </div>
+          <small>
+            <%= (a_todo.updated_at).strftime("Completed at %l:%M%P on %d-%b-%Y") %> 
+            <a href="/delete_todo/<%= a_todo.id %>">
+              Delete
+            </a>
+          </small>
+        </li>
+        
+      <% end %>
+    </ul>
+  </div>
 
-<hr>
+</div>

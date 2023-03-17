@@ -7,6 +7,8 @@ class TodosController < ApplicationController
       @list_next_up = matching_todos.where({ :status => "next_up" })
       
       @list_in_progress = matching_todos.where({ :status => "in_progress" })
+      
+      @done = matching_todos.where({ :status => "done" })
 
       render({ :template => "todos/index.html.erb" })
   
